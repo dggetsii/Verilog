@@ -13,6 +13,7 @@ wire [7:0] srd1;
 wire [7:0] srd2;
 wire [7:0] salu;
 wire [7:0] wd3;
+wire z_salu;
 //Instanciar e interconectar pc, memprog, regfile, alu, sum y mux's
 
 
@@ -20,11 +21,18 @@ wire [7:0] wd3;
 registro #10 PC(clk,reset,ePC,sPC);
 memprog mem_(clk,sPC,smem);
 regfile banco(clk,we3,smem[7:4],smem[11:8],smem[15:12],wd3,srd1,srd2);
-alu alu_ (srd1,srd2,op,salu,z);
+alu alu_ (srd1,srd2,op,salu,z_salu);
+flop ffp(clk,z_salu,z);
+
 sum sumador(sPC,1'b1,ssum);
 
 mux2 #(10) mux2_1(smem[15:6],ssum,s_inc,ePC);//Sumador del PC 
 mux2 #(8) mux2_2(salu,smem[11:4],s_inm,wd3);//Entrada banco registros
 
+
 assign opcode = smem[5:0];
+
+
+
+
 endmodule

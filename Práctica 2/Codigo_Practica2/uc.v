@@ -42,7 +42,7 @@ always @( * )//Posible fallo al no incluir reset
 			begin
 				s_inm <= 1'b0;
 				we3 <= 1'b0;
-				if (z)				
+				if (z)			
 					s_inc <= 1'b1; //Siguiente instruccion
 				else
 					s_inc <= 1'b0; //Salto a la siguiente
@@ -56,9 +56,8 @@ always @( * )//Posible fallo al no incluir reset
 				s_inm <=				
 			end
 */		6'bxx1111://Halt
-			begin
-				fin <= 1'b1;							
-			end
+			fin <= 1'b1;							
+			
 	endcase
 
 endmodule

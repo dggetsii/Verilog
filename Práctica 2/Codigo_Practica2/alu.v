@@ -24,6 +24,8 @@ end
 assign y = s;
 
 //Calculo del flag de cero
+
 assign zero = ~(|y);   //operador de reducción |y hace la or de los bits del vector 'y' y devuelve 1 bit resultado
-		   
+	
+ 
 endmodule
