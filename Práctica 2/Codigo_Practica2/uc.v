@@ -2,8 +2,7 @@ module uc (input wire clk, reset, z, input wire [5:0] opcode, output reg s_inc, 
 
 
 
-always @( * )//Posible fallo al no incluir reset
-	
+always @( * )
 	casex (opcode)
 
 		6'bxx0xxx://ALU
