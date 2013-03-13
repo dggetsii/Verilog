@@ -103,7 +103,9 @@ begin
 	else
 	begin
 		if (enable)
-			q <= rd3; //asignación no bloqueante q=d	
+			q <= rd3; //asignación no bloqueante q=d
+		else
+			q <= 0;		
 	end		
 end
 endmodule

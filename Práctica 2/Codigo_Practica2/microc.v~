@@ -25,7 +25,7 @@ module microc(input wire clk, reset, s_inc, s_inc2, s_inm,s_inm2, we3, enable,
 
    wire [7:0] smInput; //Salida multiplexor entrada
    wire[7:0]sm4 ; //Salida multiplexor m4
-    wire[3:0]sdec; //Salida DECODER
+    wire[7:0]sdec; //Salida DECODER
    
    
    //Cables puertos IO
