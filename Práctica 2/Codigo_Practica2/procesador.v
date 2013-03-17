@@ -4,16 +4,18 @@
 `include "microc.v"
 
 module procesador(input wire clk, reset,
-				  input wire [7:0] v_i1,v_i2,v_i3,v_i4,
-				  output wire [7:0] pro_out1,pro_out2,pro_out3,pro_out4,
-				  output wire [7:0] test); //VALOR BANCO REGISTRO (15:0)
+				  input wire [31:0] in,
+				  output wire [31:0] out);
 
-wire z, s_inc, s_inc2, s_inm,s_inm2, we3, enable, fin;
+wire z, s_inc, s_inc2, s_inm,s_inm2, we3, enable, fin, clk_;
 wire [1:0] s_IO;
 wire [2:0] op;
 wire [5:0] opcode;
 
-   uc uc_ (clk, reset, z,opcode, s_inc, s_inc2, s_inm,s_inm2, we3,fin,enable, op ,s_IO);
-   microc microc_(clk, reset, s_inc, s_inc2, s_inm, s_inm2, we3, enable, s_IO, op, z, opcode,pro_out1,pro_out2,pro_out3,pro_out4, v_i1,v_i2,v_i3,v_i4, test);
-
+ 
+assign clk_=fin ?1'b0:clk;
+   uc uc_ (clk_, reset, z, opcode, s_inc, s_inc2, s_inm, s_inm2, we3, fin, enable, op, s_IO);
+   microc microc_(clk_, reset, s_inc, s_inc2, s_inm, s_inm2, we3, enable, s_IO, op, in, z, opcode, out);
+	
+	
 endmodule

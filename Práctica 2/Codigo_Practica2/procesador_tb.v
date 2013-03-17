@@ -9,18 +9,18 @@ crear programa op, por ejemplo lol
 module procesador_tb;
 
 reg t_clk, t_reset;
-reg [7:0]  t_v1,t_v2,t_v3,t_v4;
-wire [7:0]  t_out1,t_out2,t_out3,t_out4,  t_test;
+wire [31:0] t_out;
+reg [31:0] t_in;
 
 initial
 begin
-t_v1=8'b00000101 ;
-t_v2=8'b00000001;
-t_v3=8'b00000100;
-t_v4=0;
+assign t_in[7:0]=8'b00000101 ;
+assign t_in[15:8]=8'b00000001;
+assign t_in[23:16]=8'b00000100;
+assign t_in[31:24]=0;
 end
 
-procesador intel(t_clk,t_reset,t_v1, t_v2, t_v3, t_v4, t_out1,t_out2,t_out3,t_out4, t_test);
+procesador intel(t_clk,t_reset,t_in,t_out);
 
 always //siempre activo, no hay condición de activación
 begin
